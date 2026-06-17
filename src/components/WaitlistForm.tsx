@@ -61,8 +61,9 @@ const WaitlistForm = ({ className = '' }) => {
   }
 
   return (
-    <div className={`waitlist-container ${className}`}>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div className={`waitlist-container ${className}`} style={{ background: '#FFFFFF', padding: '2rem', borderRadius: '16px', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.08)' }}>
+      <h3 style={{ color: 'var(--text-dark)', fontWeight: 700, fontSize: '1.25rem', marginBottom: '1.5rem', textAlign: 'left' }}>Join the Waitlist</h3>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ display: 'flex', gap: '0.5rem', position: 'relative' }}>
           <input 
             type="email" 
@@ -95,14 +96,10 @@ const WaitlistForm = ({ className = '' }) => {
           </p>
         )}
         
-        <p style={{ color: 'var(--text-light)', fontSize: '0.85rem', paddingLeft: '1rem', margin: '0.5rem 0 0 0', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+        <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', paddingLeft: '0.5rem', margin: '0.5rem 0 0 0', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
           <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
-          <strong>{counter.toLocaleString()}</strong> property professionals on the waitlist.
+          <strong style={{ color: 'var(--text-dark)' }}>{counter.toLocaleString()}</strong> property professionals on the waitlist.
         </p>
-
-        <div style={{ marginTop: '1rem', padding: '1rem', background: 'var(--bg-main)', borderRadius: '8px', border: '1px dashed var(--border-light)', fontSize: '0.85rem', color: 'var(--text-body)' }}>
-          <strong>WAITLIST NOTE:</strong> Primary CTA across the whole site is the early-access waitlist (not direct sign-up). The waitlist form must validate the email, show a success state, and display a live-incrementing counter. Place it in the hero, repeat at the bottom of every page, plus a dedicated waitlist page.
-        </div>
       </form>
     </div>
   );
