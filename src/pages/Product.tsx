@@ -33,7 +33,9 @@ const Product = () => {
                 <li className="flex items-center gap-2"><div style={{width: 6, height: 6, borderRadius:'50%', background:'var(--primary)'}}></div> Confidence intervals for every property</li>
               </ul>
             </div>
-            <div style={{ background: 'var(--bg-main)', height: '350px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}></div>
+            <div style={{ background: 'var(--bg-main)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden', display: 'flex', aspectRatio: '4/3' }}>
+              <img src="/images/avm_dashboard.png" alt="Automated Valuation Models Dashboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </div>
         </div>
       </section>
@@ -54,7 +56,9 @@ const Product = () => {
                 <li className="flex items-center gap-2"><div style={{width: 6, height: 6, borderRadius:'50%', background:'var(--primary)'}}></div> Rental yield projections</li>
               </ul>
             </div>
-            <div style={{ background: 'var(--bg-card)', height: '350px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', direction: 'ltr' }}></div>
+            <div style={{ background: 'var(--bg-card)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', direction: 'ltr', overflow: 'hidden', display: 'flex', aspectRatio: '4/3' }}>
+              <img src="/images/investment_scoring_dashboard.png" alt="Investment Scoring Dashboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </div>
         </div>
       </section>
@@ -75,7 +79,9 @@ const Product = () => {
                 <li className="flex items-center gap-2"><div style={{width: 6, height: 6, borderRadius:'50%', background:'var(--primary)'}}></div> Infrastructure and zoning changes</li>
               </ul>
             </div>
-            <div style={{ background: 'var(--bg-main)', height: '350px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}></div>
+            <div style={{ background: 'var(--bg-main)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden', display: 'flex', aspectRatio: '4/3' }}>
+              <img src="/images/neighborhood_trends_dashboard.png" alt="Neighborhood Trends Dashboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </div>
         </div>
       </section>
@@ -96,7 +102,9 @@ const Product = () => {
                 <li className="flex items-center gap-2"><div style={{width: 6, height: 6, borderRadius:'50%', background:'var(--primary)'}}></div> Automated monthly performance reports</li>
               </ul>
             </div>
-            <div style={{ background: 'var(--bg-card)', height: '350px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', direction: 'ltr' }}></div>
+            <div style={{ background: 'var(--bg-card)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)', direction: 'ltr', overflow: 'hidden', display: 'flex', aspectRatio: '4/3' }}>
+              <img src="/images/portfolio_tracking_dashboard.png" alt="Portfolio Tracking Dashboard" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </div>
         </div>
       </section>
