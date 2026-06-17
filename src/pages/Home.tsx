@@ -9,24 +9,27 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="section" style={{ paddingTop: '10rem', overflow: 'hidden' }}>
-        <div className="container text-center" style={{ position: 'relative', zIndex: 10, maxWidth: '800px', margin: '0 auto' }}>
-          <div className="animate-fade-in">
-            <div className="badge badge-orange" style={{ margin: '0 auto 1.5rem auto' }}>
-              Early Access
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="grid grid-cols-2 gap-12 items-center" style={{ marginBottom: '4rem' }}>
+            <div className="animate-fade-in">
+              <div className="badge badge-orange" style={{ marginBottom: '1.5rem' }}>
+                Early Access
+              </div>
+              <h1 className="h1" style={{ marginBottom: '1.5rem' }}>
+                Property decisions, <br/>
+                <span className="text-gradient">powered by data.</span>
+              </h1>
+              <p className="text-body" style={{ fontSize: '1.25rem', maxWidth: '500px' }}>
+                Stop relying on gut-feel. Estata brings institutional-grade automated valuation, investment scoring, and neighborhood trend signals to your portfolio.
+              </p>
             </div>
-            <h1 className="h1" style={{ marginBottom: '1.5rem' }}>
-              Property decisions, <br/>
-              <span className="text-gradient">powered by data.</span>
-            </h1>
-            <p className="text-body" style={{ fontSize: '1.25rem', marginBottom: '2.5rem', margin: '0 auto 2.5rem auto', maxWidth: '600px' }}>
-              Stop relying on gut-feel. Estata brings institutional-grade automated valuation, investment scoring, and neighborhood trend signals to your portfolio.
-            </p>
-            <div style={{ maxWidth: '600px', margin: '0 auto 4rem auto' }}>
-              <WaitlistForm />
+            <div className="animate-fade-in delay-200" style={{ transform: 'translateY(-2rem)' }}>
+              <MapWidget />
             </div>
           </div>
-          <div className="animate-fade-in delay-200" style={{ transform: 'translateY(-2rem)' }}>
-            <MapWidget />
+          
+          <div className="animate-fade-in delay-300" style={{ maxWidth: '700px', margin: '0 auto' }}>
+            <WaitlistForm />
           </div>
         </div>
       </section>
