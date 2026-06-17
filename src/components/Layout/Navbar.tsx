@@ -1,55 +1,59 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BarChart3 } from 'lucide-react';
-import './Navbar.css';
+import { Menu, X, Hexagon } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const isActive = (path) => location.pathname === path ? 'active' : '';
 
-  const isActive = (path: string) => location.pathname === path;
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Pages', path: '/solutions' },
+    { name: 'Projects', path: '/product' },
+    { name: 'Blog', path: '/resources' },
+    { name: 'Contact', path: '/pricing' },
+  ];
 
   return (
-    <header className="navbar-container glass">
-      <div className="container navbar-inner">
-        <Link to="/" className="navbar-logo">
-          <BarChart3 className="logo-icon" />
-          <span className="logo-text">Estata</span>
+    <nav className="glass nav-pill">
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '1.25rem' }}>
+        <Hexagon fill="var(--primary)" color="var(--primary)" size={28} />
+        <span style={{ color: 'var(--text-dark)'}}>Esta<span style={{ color: 'var(--primary)' }}>ta</span></span>
+      </Link>
+
+      <ul className="nav-links" id="desktop-nav">
+        {navLinks.map((link) => (
+          <li key={link.name}>
+            <Link to={link.path} className={`nav-link ${isActive(link.path)}`}>
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <Link to="/waitlist" className="btn btn-primary" id="get-started-btn" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
+          Get Started &rarr;
         </Link>
-
-        {/* Desktop Nav */}
-        <nav className="navbar-links desktop-only">
-          <Link to="/product" className={`nav-link ${isActive('/product') ? 'active' : ''}`}>Product</Link>
-          <Link to="/solutions" className={`nav-link ${isActive('/solutions') ? 'active' : ''}`}>Solutions</Link>
-          <Link to="/pricing" className={`nav-link ${isActive('/pricing') ? 'active' : ''}`}>Pricing</Link>
-          <Link to="/insights" className={`nav-link ${isActive('/insights') ? 'active' : ''}`}>Insights</Link>
-        </nav>
-
-        <div className="navbar-actions desktop-only">
-          <Link to="/waitlist" className="btn btn-primary">Request access</Link>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button className="mobile-toggle" onClick={toggleMenu} aria-label="Toggle menu">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="mobile-only" onClick={toggleMenu} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'none' }}>
+          {isOpen ? <X size={28} color="var(--text-dark)" /> : <Menu size={28} color="var(--text-dark)" />}
         </button>
       </div>
-
-      {/* Mobile Nav */}
-      {isOpen && (
-        <div className="mobile-menu">
-          <nav className="mobile-nav-links">
-            <Link to="/product" onClick={toggleMenu} className="mobile-nav-link">Product</Link>
-            <Link to="/solutions" onClick={toggleMenu} className="mobile-nav-link">Solutions</Link>
-            <Link to="/pricing" onClick={toggleMenu} className="mobile-nav-link">Pricing</Link>
-            <Link to="/insights" onClick={toggleMenu} className="mobile-nav-link">Insights</Link>
-            <Link to="/waitlist" onClick={toggleMenu} className="btn btn-primary mobile-nav-btn">Request access</Link>
-          </nav>
-        </div>
-      )}
-    </header>
+      
+      <style>{`
+        @media (max-width: 768px) {
+          #desktop-nav, #get-started-btn {
+            display: none !important;
+          }
+          .mobile-only {
+            display: block !important;
+          }
+        }
+      `}</style>
+    </nav>
   );
 };
 
