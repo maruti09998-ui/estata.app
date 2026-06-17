@@ -22,12 +22,11 @@ const Home = () => {
               <p className="text-body" style={{ fontSize: '1.25rem', marginBottom: '2.5rem', maxWidth: '500px' }}>
                 Stop relying on gut-feel. Estata brings institutional-grade automated valuation, investment scoring, and neighborhood trend signals to your portfolio.
               </p>
-              <div style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '16px', boxShadow: 'var(--shadow-sm)', border: '1px solid var(--border-light)', maxWidth: '450px' }}>
-                <h4 style={{ marginBottom: '1rem', fontWeight: 600 }}>Join the Waitlist</h4>
+              <div style={{ maxWidth: '450px' }}>
                 <WaitlistForm />
               </div>
             </div>
-            <div className="animate-fade-in delay-200">
+            <div className="animate-fade-in delay-200" style={{ transform: 'translateY(-2rem)' }}>
               <MapWidget />
             </div>
           </div>

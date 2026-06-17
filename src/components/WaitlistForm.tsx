@@ -100,6 +100,10 @@ const WaitlistForm = ({ className = '' }) => {
           <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
           <strong style={{ color: 'var(--text-dark)' }}>{counter.toLocaleString()}</strong> property professionals on the waitlist.
         </p>
+
+        <div style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'linear-gradient(135deg, #F3E8FF 0%, #EDE9FE 100%)', borderRadius: '12px', fontSize: '0.85rem', color: 'var(--primary)', lineHeight: 1.5, textAlign: 'center' }}>
+          <strong>WAITLIST NOTE:</strong> Primary CTA across the whole site is the early-access waitlist (not direct sign-up). The waitlist form must validate the email, show a success state, and display a live-incrementing counter. Place it in the hero, repeat at the bottom of every page, plus a dedicated waitlist page.
+        </div>
       </form>
     </div>
   );
