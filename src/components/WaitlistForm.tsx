@@ -61,8 +61,8 @@ const WaitlistForm = ({ className = '' }) => {
   }
 
   return (
-    <div className={`waitlist-container ${className}`} style={{ background: '#FFFFFF', padding: '2rem', borderRadius: '16px', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.08)' }}>
-      <h3 style={{ color: 'var(--text-dark)', fontWeight: 700, fontSize: '1.25rem', marginBottom: '1.5rem', textAlign: 'left' }}>Join the Waitlist</h3>
+    <div className={`waitlist-container ${className}`} style={{ background: '#FFFFFF', padding: '2rem', borderRadius: '16px', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.08)', width: '100%', maxWidth: '600px', margin: '0 auto' }}>
+      <h3 style={{ color: 'var(--text-dark)', fontWeight: 700, fontSize: '1.25rem', marginBottom: '1.5rem', textAlign: 'center' }}>Join the Waitlist</h3>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ display: 'flex', gap: '0.5rem', position: 'relative' }}>
           <input 
@@ -96,7 +96,7 @@ const WaitlistForm = ({ className = '' }) => {
           </p>
         )}
         
-        <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', paddingLeft: '0.5rem', margin: '0.5rem 0 0 0', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+        <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', margin: '0.5rem auto 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
           <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
           <strong style={{ color: 'var(--text-dark)' }}>{counter.toLocaleString()}</strong> property professionals on the waitlist.
         </p>
