@@ -10,11 +10,10 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Pages', path: '/solutions' },
-    { name: 'Projects', path: '/product' },
-    { name: 'Blog', path: '/resources' },
-    { name: 'Contact', path: '/pricing' },
+    { name: 'Product', path: '/product' },
+    { name: 'Solutions', path: '/solutions' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Insights', path: '/insights' },
   ];
 
   return (
@@ -36,7 +35,7 @@ const Navbar = () => {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <Link to="/waitlist" className="btn btn-primary" id="get-started-btn" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
-          Get Started &rarr;
+          Request access
         </Link>
         <button className="mobile-only" onClick={toggleMenu} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'none' }}>
           {isOpen ? <X size={28} color="var(--text-dark)" /> : <Menu size={28} color="var(--text-dark)" />}

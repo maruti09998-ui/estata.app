@@ -1,183 +1,198 @@
 import React, { useState } from 'react';
+import { CheckCircle2, Minus, ChevronDown, ChevronUp } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
-import BottomCTA from '../components/BottomCTA';
-import { Check, ChevronDown, ChevronUp, Minus } from 'lucide-react';
 
-const FAQAccordion = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-  
-  const faqs = [
-    { q: 'How is the valuation calculated?', a: 'We use a proprietary ensemble model combining real-time comparable sales, macroeconomic indicators, and neighborhood trends. Our models are re-trained weekly.' },
-    { q: 'Is there a limit to how many properties I can track?', a: 'Starter tier limits to 10 properties. Pro allows up to 500. Team has custom limits based on your brokerage size.' },
-    { q: 'Can I integrate this into my existing CRM?', a: 'Team plans include API access and native integrations with popular real estate CRMs.' },
-  ];
-
+const FAQItem = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="faq-container" style={{ maxWidth: '800px', margin: '0 auto', marginTop: '6rem' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2rem' }}>Frequently Asked Questions</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {faqs.map((faq, idx) => (
-          <div key={idx} style={{ backgroundColor: 'white', borderRadius: 'var(--radius-lg)', padding: '1.5rem', boxShadow: 'var(--shadow-sm)' }}>
-            <button 
-              onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'transparent', border: 'none', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-main)' }}
-            >
-              {faq.q}
-              <div style={{ color: openIndex === idx ? 'var(--accent)' : 'var(--text-muted)' }}>
-                {openIndex === idx ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-              </div>
-            </button>
-            {openIndex === idx && (
-              <div style={{ paddingTop: '1rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                {faq.a}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+    <div style={{ borderBottom: '1px solid var(--border-light)' }}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'transparent', border: 'none', padding: '1.5rem 0', cursor: 'pointer', textAlign: 'left', outline: 'none' }}
+      >
+        <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-dark)', margin: 0 }}>{question}</h4>
+        {isOpen ? <ChevronUp size={20} color="var(--primary)" /> : <ChevronDown size={20} color="var(--text-light)" />}
+      </button>
+      {isOpen && (
+        <div style={{ paddingBottom: '1.5rem', color: 'var(--text-body)', animation: 'fadeIn 0.3s ease' }}>
+          {answer}
+        </div>
+      )}
     </div>
   );
 };
 
-const FeatureMatrix = () => {
-  const features = [
-    { name: 'Properties tracked', starter: '10', pro: '500', team: 'Unlimited' },
-    { name: 'Automated valuations', starter: true, pro: true, team: true },
-    { name: 'Monthly market reports', starter: true, pro: true, team: true },
-    { name: 'Investment scoring', starter: false, pro: true, team: true },
-    { name: 'Neighborhood signals', starter: false, pro: true, team: true },
-    { name: 'Real-time alerts', starter: false, pro: true, team: true },
-    { name: 'API access', starter: false, pro: false, team: true },
-    { name: 'Team collaboration', starter: false, pro: false, team: true },
-    { name: 'White-labeling', starter: false, pro: false, team: true },
+const Pricing = () => {
+  const [isAnnual, setIsAnnual] = useState(false);
+
+  const plans = [
+    {
+      name: 'Starter',
+      price: isAnnual ? '49' : '59',
+      description: 'Perfect for independent investors and small agents.',
+      features: ['50 Automated Valuations/mo', 'Basic Investment Scoring', 'Neighborhood Snapshots', 'Email Support'],
+      highlighted: false
+    },
+    {
+      name: 'Pro',
+      price: isAnnual ? '149' : '179',
+      description: 'Ideal for growing teams and mid-sized brokerages.',
+      features: ['500 Automated Valuations/mo', 'Advanced CMA Reports', 'Predictive Trend Signals', 'Priority Support', 'API Access'],
+      highlighted: true
+    },
+    {
+      name: 'Team',
+      price: isAnnual ? '399' : '499',
+      description: 'Enterprise grade intelligence for funds and large teams.',
+      features: ['Unlimited Valuations', 'Portfolio Stress Testing', 'Custom API Integrations', 'Dedicated Account Manager', 'White-label Reports'],
+      highlighted: false
+    }
   ];
 
-  const renderCheck = (val: boolean | string) => {
-    if (typeof val === 'string') return <span style={{ fontWeight: 600 }}>{val}</span>;
-    if (val) return <Check size={20} color="var(--accent)" />;
-    return <Minus size={20} color="rgba(28, 43, 59, 0.2)" />;
-  };
-
   return (
-    <div style={{ marginTop: '6rem', backgroundColor: 'white', borderRadius: 'var(--radius-xl)', padding: '3rem', boxShadow: 'var(--shadow-md)', overflowX: 'auto' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2rem' }}>Compare features</h2>
-      <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
-        <thead>
-          <tr style={{ borderBottom: '2px solid var(--border-light)' }}>
-            <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 500, width: '40%' }}>Features</th>
-            <th style={{ padding: '1rem', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', width: '20%' }}>Starter</th>
-            <th style={{ padding: '1rem', fontSize: '1.1rem', color: 'var(--primary)', textAlign: 'center', width: '20%' }}>Pro</th>
-            <th style={{ padding: '1rem', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', width: '20%' }}>Team</th>
-          </tr>
-        </thead>
-        <tbody>
-          {features.map((f, i) => (
-            <tr key={i} style={{ borderBottom: '1px solid var(--border-light)' }}>
-              <td style={{ padding: '1.25rem 1rem', fontWeight: 500, color: 'var(--text-main)' }}>{f.name}</td>
-              <td style={{ padding: '1.25rem 1rem', textAlign: 'center' }}>{renderCheck(f.starter)}</td>
-              <td style={{ padding: '1.25rem 1rem', backgroundColor: 'rgba(28, 43, 59, 0.02)', textAlign: 'center' }}>{renderCheck(f.pro)}</td>
-              <td style={{ padding: '1.25rem 1rem', textAlign: 'center' }}>{renderCheck(f.team)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-const Pricing: React.FC = () => {
-  const [isAnnual, setIsAnnual] = useState(true);
-
-  return (
-    <div className="pricing-page section">
-      <div className="container">
-        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto', marginBottom: '5rem' }}>
-          <h1 className="text-display">Pricing built for scale</h1>
-          <p className="text-lead mt-4">Simple, transparent pricing for individuals and teams.</p>
+    <div style={{ width: '100%', paddingTop: '6rem' }}>
+      
+      {/* Header */}
+      <section className="section text-center" style={{ paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="badge badge-orange">Pricing</div>
+          <h1 className="h1" style={{ marginBottom: '1rem' }}>Invest smarter, scale faster</h1>
+          <p className="text-body" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
+            Transparent pricing designed to give you an unfair advantage in the market.
+          </p>
           
-          <div style={{ display: 'inline-flex', alignItems: 'center', background: 'white', padding: '0.5rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', marginTop: '2.5rem', boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ display: 'inline-flex', background: 'var(--bg-card)', borderRadius: '999px', padding: '0.25rem', border: '1px solid var(--border-light)' }}>
             <button 
               onClick={() => setIsAnnual(false)}
-              style={{ padding: '0.75rem 1.5rem', borderRadius: 'var(--radius-pill)', background: !isAnnual ? 'var(--primary)' : 'transparent', color: !isAnnual ? 'white' : 'var(--text-main)', border: 'none', fontWeight: 500, transition: 'all 0.2s' }}
+              style={{ padding: '0.5rem 1.5rem', borderRadius: '999px', border: 'none', background: !isAnnual ? 'var(--primary)' : 'transparent', color: !isAnnual ? 'white' : 'var(--text-body)', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
             >
               Monthly
             </button>
             <button 
               onClick={() => setIsAnnual(true)}
-              style={{ padding: '0.75rem 1.5rem', borderRadius: 'var(--radius-pill)', background: isAnnual ? 'var(--primary)' : 'transparent', color: isAnnual ? 'white' : 'var(--text-main)', border: 'none', fontWeight: 500, transition: 'all 0.2s' }}
+              style={{ padding: '0.5rem 1.5rem', borderRadius: '999px', border: 'none', background: isAnnual ? 'var(--primary)' : 'transparent', color: isAnnual ? 'white' : 'var(--text-body)', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
             >
-              Annually (Save 20%)
+              Annually <span style={{ color: isAnnual ? 'white' : 'var(--primary)', fontSize: '0.8rem' }}>-20%</span>
             </button>
           </div>
         </div>
+      </section>
 
-        {/* Pricing Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'center' }}>
-          
-          {/* Starter */}
-          <div className="glass" style={{ padding: '3rem 2rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: '1.25rem', color: 'var(--text-muted)' }}>Starter</h3>
-            <div style={{ fontSize: '3rem', fontWeight: 800, margin: '1.5rem 0', letterSpacing: '-0.03em' }}>
-              ${isAnnual ? '49' : '59'}<span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 500 }}>/mo</span>
-            </div>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '2.5rem', minHeight: '48px' }}>For individual investors starting out.</p>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> 10 properties tracked</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> Core automated valuations</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> Monthly market reports</li>
-            </ul>
-            <div style={{ marginTop: '3rem' }}>
-              <WaitlistForm />
-            </div>
+      {/* Pricing Cards */}
+      <section className="section" style={{ paddingTop: '0' }}>
+        <div className="container">
+          <div className="grid grid-cols-3 gap-8">
+            {plans.map((plan, i) => (
+              <div key={i} className="card flex-col" style={{ 
+                transform: plan.highlighted ? 'translateY(-20px)' : 'none', 
+                background: plan.highlighted ? 'var(--accent)' : 'var(--bg-card)', 
+                borderColor: plan.highlighted ? 'var(--border-light)' : 'var(--border-light)', 
+                boxShadow: plan.highlighted ? 'var(--shadow-lg)' : 'var(--shadow-sm)',
+                zIndex: plan.highlighted ? 10 : 1
+              }}>
+                {plan.highlighted && <div className="badge" style={{ alignSelf: 'flex-start', background: 'var(--bg-card)', color: 'var(--primary)' }}>Popular</div>}
+                <h3 className="h3" style={{ marginBottom: '0.5rem' }}>{plan.name}</h3>
+                <p style={{ color: 'var(--text-body)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{plan.description}</p>
+                <div className="h1" style={{ marginBottom: '1.5rem' }}>${plan.price}<span style={{ fontSize: '1rem', color: 'var(--text-body)' }}>/mo</span></div>
+                
+                <ul className="flex-col gap-3" style={{ flex: 1, marginBottom: '2rem' }}>
+                  {plan.features.map((f, j) => (
+                    <li key={j} className="flex items-center gap-2 text-body" style={{ fontSize: '0.95rem' }}>
+                      <CheckCircle2 size={18} color="var(--primary)" style={{ flexShrink: 0 }}/> {f}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#waitlist-bottom" className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-secondary'}`} style={{ width: '100%', padding: '0.8rem' }}>
+                  Request Access
+                </a>
+              </div>
+            ))}
           </div>
-
-          {/* Pro */}
-          <div style={{ padding: '3.5rem 2rem', borderRadius: 'var(--radius-xl)', backgroundColor: 'var(--primary)', color: 'white', display: 'flex', flexDirection: 'column', boxShadow: 'var(--shadow-lg)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ fontSize: '1.25rem', color: 'white' }}>Pro</h3>
-              <span style={{ backgroundColor: 'rgba(226, 166, 118, 0.15)', color: '#E2A676', padding: '0.5rem 1rem', borderRadius: 'var(--radius-pill)', fontSize: '0.85rem', fontWeight: 600 }}>Most Popular</span>
-            </div>
-            <div style={{ fontSize: '3rem', fontWeight: 800, margin: '1.5rem 0', letterSpacing: '-0.03em' }}>
-              ${isAnnual ? '149' : '179'}<span style={{ fontSize: '1rem', opacity: 0.7, fontWeight: 500 }}>/mo</span>
-            </div>
-            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2.5rem', minHeight: '48px' }}>For active investors needing deep insights.</p>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> <span style={{ color: 'white' }}>500 properties tracked</span></li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> <span style={{ color: 'white' }}>Investment scoring</span></li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> <span style={{ color: 'white' }}>Real-time alerts</span></li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> <span style={{ color: 'white' }}>Neighborhood signals</span></li>
-            </ul>
-            <div style={{ marginTop: '3rem' }}>
-              <WaitlistForm />
-            </div>
-          </div>
-
-          {/* Team */}
-          <div className="glass" style={{ padding: '3rem 2rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: '1.25rem', color: 'var(--text-muted)' }}>Team</h3>
-            <div style={{ fontSize: '3rem', fontWeight: 800, margin: '1.5rem 0', letterSpacing: '-0.03em' }}>
-              Custom
-            </div>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '2.5rem', minHeight: '48px' }}>For brokerages and large teams.</p>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> Unlimited properties</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> Multi-user access</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> API access</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><Check size={20} color="var(--accent)" style={{ flexShrink: 0 }} /> Advanced reporting</li>
-            </ul>
-            <div style={{ marginTop: '3rem' }}>
-              <WaitlistForm />
-            </div>
-          </div>
-          
         </div>
+      </section>
 
-        <FeatureMatrix />
+      {/* Feature Matrix */}
+      <section className="section" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border-light)' }}>
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: '4rem' }}>
+            <h2 className="h2">Compare Features</h2>
+          </div>
+          
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', minWidth: '800px', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  <th style={{ padding: '1.5rem', textAlign: 'left', borderBottom: '2px solid var(--border-light)', width: '40%' }}>Feature</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid var(--border-light)', width: '20%' }}>Starter</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid var(--border-light)', width: '20%' }}>Pro</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'center', borderBottom: '2px solid var(--border-light)', width: '20%' }}>Team</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: 'Automated Valuations', starter: '50/mo', pro: '500/mo', team: 'Unlimited' },
+                  { name: 'Investment Scoring', starter: true, pro: true, team: true },
+                  { name: 'Neighborhood Trends', starter: false, pro: true, team: true },
+                  { name: 'CMA PDF Export', starter: false, pro: true, team: true },
+                  { name: 'API Access', starter: false, pro: false, team: true },
+                  { name: 'White-labeling', starter: false, pro: false, team: true },
+                ].map((row, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border-light)' }}>
+                    <td style={{ padding: '1.5rem', fontWeight: 500 }}>{row.name}</td>
+                    <td style={{ padding: '1.5rem', textAlign: 'center' }}>
+                      {typeof row.starter === 'boolean' ? (row.starter ? <CheckCircle2 color="var(--primary)" size={20} style={{ margin: '0 auto' }}/> : <Minus color="var(--text-light)" size={20} style={{ margin: '0 auto' }}/>) : row.starter}
+                    </td>
+                    <td style={{ padding: '1.5rem', textAlign: 'center', background: 'rgba(244, 241, 254, 0.3)' }}>
+                      {typeof row.pro === 'boolean' ? (row.pro ? <CheckCircle2 color="var(--primary)" size={20} style={{ margin: '0 auto' }}/> : <Minus color="var(--text-light)" size={20} style={{ margin: '0 auto' }}/>) : row.pro}
+                    </td>
+                    <td style={{ padding: '1.5rem', textAlign: 'center' }}>
+                      {typeof row.team === 'boolean' ? (row.team ? <CheckCircle2 color="var(--primary)" size={20} style={{ margin: '0 auto' }}/> : <Minus color="var(--text-light)" size={20} style={{ margin: '0 auto' }}/>) : row.team}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-        <FAQAccordion />
+      {/* FAQ */}
+      <section className="section">
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <h2 className="h2 text-center" style={{ marginBottom: '3rem' }}>Frequently Asked Questions</h2>
+          <div className="flex-col">
+            <FAQItem 
+              question="When will I get off the waitlist?" 
+              answer="We are onboarding new users in batches every Tuesday. Depending on your queue position, you should receive an access link within 2-4 weeks of joining the waitlist." 
+            />
+            <FAQItem 
+              question="What data sources do you use?" 
+              answer="Our AVM and predictive models aggregate data from over 50 public and private sources, including county tax assessments, historical MLS data, census demographics, and commercial building permits." 
+            />
+            <FAQItem 
+              question="Can I upgrade or downgrade my plan later?" 
+              answer="Absolutely. You can change your plan at any time. Prorated charges or credits will be automatically applied to your account for the remainder of the billing cycle." 
+            />
+            <FAQItem 
+              question="Is there a setup fee for the Team plan?" 
+              answer="No, there are no hidden fees. The Team plan includes a dedicated account manager who will help you integrate our API and set up white-label reports at no extra cost." 
+            />
+          </div>
+        </div>
+      </section>
 
-        <BottomCTA />
-      </div>
+      {/* Bottom Waitlist CTA */}
+      <section id="waitlist-bottom" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(180deg, var(--accent) 0%, transparent 100%)', opacity: 0.5, zIndex: -1 }}></div>
+        <div className="container text-center">
+          <h2 className="h1" style={{ marginBottom: '1.5rem' }}>Secure your pricing rate.</h2>
+          <p className="text-body" style={{ fontSize: '1.25rem', marginBottom: '2.5rem' }}>Join the waitlist today to lock in early-adopter pricing for Estata 2.0.</p>
+          <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+            <WaitlistForm />
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

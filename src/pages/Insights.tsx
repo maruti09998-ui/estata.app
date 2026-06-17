@@ -1,115 +1,123 @@
 import React from 'react';
+import { ArrowUpRight, BookOpen, BarChart } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
-import { FileText, Database, ArrowRight, BarChart3, TrendingUp, Map } from 'lucide-react';
 
-const Insights: React.FC = () => {
+const Insights = () => {
   return (
-    <div className="insights-page section">
-      <div className="container">
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '5rem' }}>
-          <h1 className="text-display">Market intelligence & Methodology.</h1>
-          <p className="text-lead mt-4">We believe in transparent data. See how we calculate valuations and read our latest market analysis.</p>
+    <div style={{ width: '100%', paddingTop: '6rem' }}>
+      
+      {/* Header */}
+      <section className="section text-center" style={{ paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="badge badge-orange">Insights</div>
+          <h1 className="h1" style={{ marginBottom: '1rem' }}>Data-driven market intelligence</h1>
+          <p className="text-body" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto' }}>
+            Open-source research, market report cards, and deep dives into the methodology powering Estata's AVMs.
+          </p>
         </div>
+      </section>
 
-        {/* Market Report Cards */}
-        <div style={{ marginBottom: '6rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-            <div style={{ padding: '0.75rem', backgroundColor: 'rgba(28, 43, 59, 0.05)', color: 'var(--primary)', borderRadius: '12px' }}>
-              <FileText size={24} />
-            </div>
-            <h2 style={{ fontSize: '2rem', margin: 0 }}>Latest Market Reports</h2>
+      {/* Market Report Cards */}
+      <section className="section" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border-light)' }}>
+        <div className="container">
+          <div className="flex justify-between items-center" style={{ marginBottom: '3rem' }}>
+            <h2 className="h2">Market Report Cards</h2>
+            <button className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>View all markets <ArrowUpRight size={18}/></button>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            {/* Report 1 */}
-            <a href="#" className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', display: 'block', transition: 'transform 0.2s, box-shadow 0.2s' }}>
-              <div style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}><Map size={32} /></div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Sunbelt Migration Slowdown</h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', lineHeight: 1.6 }}>What the Q3 permit data says about slowing growth in Austin and Phoenix, and where the smart money is moving next.</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.9rem' }}>
-                Read Report <ArrowRight size={16} />
+          <div className="grid grid-cols-3 gap-8">
+            {[
+              { city: 'Austin, TX', trend: '+12.4%', status: 'Hot', img: 'var(--primary)' },
+              { city: 'Boise, ID', trend: '-2.1%', status: 'Cooling', img: 'var(--secondary)' },
+              { city: 'Raleigh, NC', trend: '+8.7%', status: 'Stable', img: 'var(--accent)' }
+            ].map((market, i) => (
+              <div key={i} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                <div style={{ height: '160px', background: market.img, opacity: 0.8 }}></div>
+                <div style={{ padding: '1.5rem' }}>
+                  <div className="flex justify-between items-start" style={{ marginBottom: '1rem' }}>
+                    <h3 className="h4">{market.city}</h3>
+                    <div className="badge" style={{ margin: 0, background: market.status === 'Hot' ? '#FEE2E2' : market.status === 'Cooling' ? '#E0F2FE' : '#FEF3C7', color: market.status === 'Hot' ? '#DC2626' : market.status === 'Cooling' ? '#0284C7' : '#D97706' }}>{market.status}</div>
+                  </div>
+                  <div className="flex items-center gap-2 text-body" style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                    YOY Value Trend: <strong style={{ color: market.trend.startsWith('+') ? '#10B981' : '#EF4444' }}>{market.trend}</strong>
+                  </div>
+                  <button style={{ width: '100%', padding: '0.75rem', background: 'transparent', border: '1px solid var(--border-light)', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', color: 'var(--text-dark)' }}>Download Q3 Report</button>
+                </div>
               </div>
-            </a>
-            
-            {/* Report 2 */}
-            <a href="#" className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', display: 'block', transition: 'transform 0.2s, box-shadow 0.2s' }}>
-              <div style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}><TrendingUp size={32} /></div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Institutional Buying Patterns</h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', lineHeight: 1.6 }}>An analysis of 10,000 single-family rental acquisitions to uncover the exact criteria driving institutional capital allocation.</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.9rem' }}>
-                Read Report <ArrowRight size={16} />
-              </div>
-            </a>
-
-            {/* Report 3 */}
-            <a href="#" className="glass" style={{ padding: '2rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', display: 'block', transition: 'transform 0.2s, box-shadow 0.2s' }}>
-              <div style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}><BarChart3 size={32} /></div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Interest Rate Sensitivity</h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', lineHeight: 1.6 }}>How the recent 50bps rate hike is already impacting hyper-local pricing across 15 major MSAs.</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.9rem' }}>
-                Read Report <ArrowRight size={16} />
-              </div>
-            </a>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Methodology Explainer */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{ padding: '0.75rem', backgroundColor: 'rgba(28, 43, 59, 0.05)', color: 'var(--primary)', borderRadius: '12px' }}>
-                <Database size={24} />
+      {/* Methodology Explainer */}
+      <section className="section">
+        <div className="container">
+          <div className="grid grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="icon-box icon-box-primary"><BarChart size={24}/></div>
+              <h2 className="h2" style={{ marginBottom: '1rem' }}>Our Valuation Methodology</h2>
+              <p className="text-body" style={{ marginBottom: '1.5rem' }}>
+                Transparency is at the core of Estata. Unlike "black box" AVMs, we publish regular whitepapers detailing exactly how our machine learning models weight different property characteristics and market trends.
+              </p>
+              <div style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
+                <h4 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Current AVM Accuracy (National)</h4>
+                <div className="flex justify-between items-center" style={{ marginBottom: '0.5rem' }}>
+                  <span className="text-body" style={{ fontSize: '0.9rem' }}>Median Absolute Error</span>
+                  <span style={{ fontWeight: 700, color: 'var(--primary)' }}>4.2%</span>
+                </div>
+                <div style={{ width: '100%', height: '8px', background: 'var(--accent)', borderRadius: '4px' }}>
+                  <div style={{ width: '95.8%', height: '100%', background: 'var(--primary)', borderRadius: '4px' }}></div>
+                </div>
               </div>
-              <h2 style={{ fontSize: '2rem', margin: 0 }}>Our Methodology</h2>
             </div>
-            <p className="text-lead" style={{ margin: 0, marginBottom: '1.5rem' }}>
-              Estata's Automated Valuation Models (AVMs) don't rely solely on lagging tax records. We use a proprietary 5-factor ensemble model to generate accurate, real-time pricing confidence.
-            </p>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-muted)' }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>1.</span> Live comparable indexing (updated daily)</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>2.</span> Hyper-local school district and transit scoring</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>3.</span> Macro-economic and interest rate weighting</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}><span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>4.</span> Building permit and renovation tracking</li>
-            </ul>
-            <button className="btn btn-outline" style={{ marginTop: '2rem', borderRadius: 'var(--radius-pill)', padding: '0.75rem 1.5rem', border: '2px solid var(--border-color)', color: 'var(--primary)', fontWeight: 600 }}>
-              Download the Whitepaper
-            </button>
-          </div>
-          <div className="glass" style={{ padding: '3rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-light)', backgroundColor: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '350px' }}>
-            {/* Visual representation of the model */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                <span>Data Ingestion</span>
-                <span>Weighting</span>
-              </div>
-              <div style={{ height: '2px', backgroundColor: 'var(--border-light)', width: '100%', margin: '-0.5rem 0' }}></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: 'var(--bg-color)', borderRadius: 'var(--radius-md)' }}>
-                <span style={{ fontWeight: 500, color: 'var(--primary)' }}>Comparable Sales</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>45%</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: 'var(--bg-color)', borderRadius: 'var(--radius-md)' }}>
-                <span style={{ fontWeight: 500, color: 'var(--primary)' }}>Macro Indicators</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>25%</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: 'var(--bg-color)', borderRadius: 'var(--radius-md)' }}>
-                <span style={{ fontWeight: 500, color: 'var(--primary)' }}>Local Sentiment</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>30%</span>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              {['Feature Engineering', 'Geospatial Clustering', 'Time-Series Analysis', 'Ensemble Models'].map((topic, i) => (
+                <div key={i} className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+                  <BookOpen size={24} color="var(--primary)" style={{ margin: '0 auto 1rem auto' }}/>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: 600 }}>{topic}</h4>
+                  <a href="#" style={{ fontSize: '0.8rem', color: 'var(--text-light)', marginTop: '0.5rem', display: 'inline-block' }}>Read paper &rarr;</a>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Blog Teaser / CTA */}
-        <div style={{ padding: '5rem 2rem', background: 'var(--primary)', color: 'white', borderRadius: 'var(--radius-xl)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', boxShadow: 'var(--shadow-lg)' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Want these insights in your inbox?</h2>
-          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '3rem', maxWidth: '600px', fontSize: '1.1rem' }}>
-            Join the waitlist to get our weekly market intelligence newsletter along with early access to the platform.
-          </p>
-          <div style={{ width: '100%', maxWidth: '500px' }}>
+      {/* Blog Teaser */}
+      <section className="section" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border-light)' }}>
+        <div className="container">
+          <div className="text-center" style={{ marginBottom: '3rem' }}>
+            <h2 className="h2">Latest from the Research Blog</h2>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-8">
+            {[
+              { title: 'The impact of remote work on suburban cap rates', date: 'Oct 12, 2026', category: 'Macro Trends' },
+              { title: 'Why traditional CMAs are failing in high-volatility markets', date: 'Sep 28, 2026', category: 'Valuation' },
+              { title: 'Introducing Estata Score v2.0: Improved yield predictions', date: 'Sep 15, 2026', category: 'Product Update' }
+            ].map((post, i) => (
+              <div key={i} style={{ borderBottom: i < 2 ? 'none' : 'none', cursor: 'pointer' }}>
+                <div style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>{post.category}</div>
+                <h3 className="h4" style={{ marginBottom: '1rem', lineHeight: 1.4 }}>{post.title}</h3>
+                <div style={{ color: 'var(--text-light)', fontSize: '0.85rem' }}>{post.date}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(180deg, var(--accent) 0%, transparent 100%)', opacity: 0.5, zIndex: -1 }}></div>
+        <div className="container text-center">
+          <h2 className="h1" style={{ marginBottom: '1.5rem' }}>Get insights delivered directly.</h2>
+          <p className="text-body" style={{ fontSize: '1.25rem', marginBottom: '2.5rem' }}>Join the waitlist today to get early access to Estata 2.0.</p>
+          <div style={{ maxWidth: '400px', margin: '0 auto' }}>
             <WaitlistForm />
           </div>
         </div>
-      </div>
+      </section>
+
     </div>
   );
 };

@@ -1,83 +1,128 @@
 import React from 'react';
+import { Briefcase, Building, ArrowRight } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
-import { Briefcase, Building } from 'lucide-react';
-import BottomCTA from '../components/BottomCTA';
 
-const Solutions: React.FC = () => {
+const Solutions = () => {
   return (
-    <div className="solutions-page section">
-      <div className="container">
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '5rem' }}>
-          <h1 className="text-display">Built for the modern real estate professional.</h1>
-          <p className="text-lead mt-4">
-            Whether you're underwriting deals or winning listings, Estata provides the data edge you need to move faster and smarter.
+    <div style={{ width: '100%', paddingTop: '6rem' }}>
+      
+      {/* Header */}
+      <section className="section text-center" style={{ paddingBottom: '3rem' }}>
+        <div className="container">
+          <div className="badge badge-orange">Solutions</div>
+          <h1 className="h1" style={{ marginBottom: '1rem' }}>Built for the modern professional</h1>
+          <p className="text-body" style={{ fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto' }}>
+            Whether you are managing a billion-dollar fund or running a local brokerage, Estata provides the actionable intelligence you need to outperform the market.
           </p>
         </div>
+      </section>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem' }}>
-          {/* For Investors */}
-          <div className="glass" style={{ padding: '3rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'rgba(226, 166, 118, 0.15)', color: '#B46C3B', borderRadius: '16px' }}>
-                <Briefcase size={32} />
+      {/* For Investors */}
+      <section className="section" style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border-light)' }}>
+        <div className="container">
+          <div className="grid grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="icon-box icon-box-primary"><Briefcase size={24}/></div>
+              <h2 className="h2" style={{ marginBottom: '1rem' }}>For Investors & Funds</h2>
+              
+              <div style={{ marginBottom: '2rem' }}>
+                <h4 style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>The Scenario</h4>
+                <p className="text-body">
+                  You're managing a growing portfolio of single-family rentals. Analyzing new markets takes weeks, and underwriting individual deals is a manual, spreadsheet-heavy process prone to human error.
+                </p>
               </div>
-              <h2 style={{ fontSize: '2rem', margin: 0 }}>For Investors</h2>
+
+              <div>
+                <h4 style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>The Estata Outcome</h4>
+                <p className="text-body" style={{ marginBottom: '1rem' }}>
+                  Deploy capital faster and safer. Instantly filter neighborhoods by projected cap rates, run automated underwriting on 10,000+ properties simultaneously, and track portfolio equity dynamically.
+                </p>
+                <ul className="flex-col gap-2">
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> 3x faster deal underwriting</li>
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> Discover emerging markets months early</li>
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> Automated portfolio stress-testing</li>
+                </ul>
+              </div>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem', flex: 1 }}>
-              <div style={{ backgroundColor: 'var(--bg-color)', padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>The Scenario</div>
-                <p style={{ margin: 0, fontWeight: 500 }}>You're evaluating 50 properties a week trying to find the one that cash flows.</p>
+            {/* Mockup Dashboard for Investors */}
+            <div style={{ background: '#0F0F1A', height: '400px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-md)', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div className="flex justify-between items-center" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+                <div style={{ color: 'white', fontWeight: 600 }}>Portfolio Alpha</div>
+                <div style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#10B981', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem' }}>+12.4% YTD</div>
               </div>
-
-              <div style={{ backgroundColor: 'rgba(28, 43, 59, 0.03)', border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>The Outcome</div>
-                <p style={{ margin: 0, color: 'var(--text-main)' }}>Estata automatically scores the list based on your criteria, flags the top 3, and provides the comps to justify your offer.</p>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
+                {[40, 60, 45, 80, 65, 95, 85, 110, 100, 130].map((h, i) => (
+                  <div key={i} style={{ flex: 1, background: i === 9 ? 'var(--primary)' : 'rgba(255,255,255,0.1)', height: `${h}px`, borderRadius: '4px 4px 0 0' }}></div>
+                ))}
               </div>
             </div>
 
-            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '3rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-muted)' }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> Bulk portfolio uploading</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> Custom investment criteria filters</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> ROI and Cap Rate projections</li>
-            </ul>
-
-            <WaitlistForm />
           </div>
+        </div>
+      </section>
 
-          {/* For Agents & Brokerages */}
-          <div style={{ padding: '3rem', borderRadius: 'var(--radius-xl)', backgroundColor: 'var(--primary)', color: 'white', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--accent)', borderRadius: '16px' }}>
-                <Building size={32} />
+      {/* For Agents & Brokerages */}
+      <section className="section">
+        <div className="container">
+          <div className="grid grid-cols-2 gap-12 items-center" style={{ direction: 'rtl' }}>
+            <div style={{ direction: 'ltr' }}>
+              <div className="icon-box icon-box-primary"><Building size={24}/></div>
+              <h2 className="h2" style={{ marginBottom: '1rem' }}>For Agents & Brokerages</h2>
+              
+              <div style={{ marginBottom: '2rem' }}>
+                <h4 style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>The Scenario</h4>
+                <p className="text-body">
+                  Winning listings requires impressing sellers with accurate data, but preparing CMAs (Comparative Market Analyses) takes hours. Buyers are demanding hyper-local data that traditional MLS platforms can't provide.
+                </p>
               </div>
-              <h2 style={{ fontSize: '2rem', margin: 0, color: 'white' }}>For Agents & Brokerages</h2>
+
+              <div>
+                <h4 style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>The Estata Outcome</h4>
+                <p className="text-body" style={{ marginBottom: '1rem' }}>
+                  Generate institutional-grade pricing reports in 30 seconds. Win more listings by showing sellers exactly how their home compares, and guide buyers using predictive neighborhood trend signals.
+                </p>
+                <ul className="flex-col gap-2">
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> Instant, branded CMA generation</li>
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> Proprietary buyer matching algorithms</li>
+                  <li className="flex items-center gap-2"><ArrowRight size={16} color="var(--primary)"/> API integration with your existing CRM</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Mockup Dashboard for Agents */}
+            <div style={{ background: 'var(--bg-card)', height: '400px', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-md)', padding: '2rem', direction: 'ltr' }}>
+               <h4 style={{ fontWeight: 600, marginBottom: '1.5rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '1rem' }}>Instant CMA Report</h4>
+               <div className="flex gap-4" style={{ marginBottom: '1rem' }}>
+                 <div style={{ width: '60px', height: '60px', background: 'var(--accent)', borderRadius: '8px' }}></div>
+                 <div>
+                   <div style={{ fontWeight: 600 }}>1423 Westlake Ave</div>
+                   <div style={{ color: 'var(--text-light)', fontSize: '0.85rem' }}>3 Bed • 2 Bath • 1,800 sqft</div>
+                 </div>
+               </div>
+               <div style={{ background: 'var(--accent)', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                 <div style={{ fontSize: '0.85rem', color: 'var(--text-body)' }}>Estata Recommended List Price</div>
+                 <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--primary)' }}>$845,000</div>
+               </div>
+               <button className="btn btn-primary" style={{ width: '100%', padding: '0.75rem' }}>Download PDF Report</button>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem', flex: 1 }}>
-              <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>The Scenario</div>
-                <p style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>You need to win a listing presentation against three other top agents.</p>
-              </div>
+          </div>
+        </div>
+      </section>
 
-              <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>The Outcome</div>
-                <p style={{ margin: 0, color: 'var(--text-main)' }}>You walk in with a co-branded Estata Market Report Card, proving you have better data and pricing strategies than the competition.</p>
-              </div>
-            </div>
-
-            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '3rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'rgba(255,255,255,0.7)' }}>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> Branded market report generation</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> Client portfolio monitoring</li>
-              <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}><span style={{ color: 'var(--accent)' }}>✦</span> Team analytics and API access</li>
-            </ul>
-
+      {/* Bottom CTA */}
+      <section className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(180deg, var(--accent) 0%, transparent 100%)', opacity: 0.5, zIndex: -1 }}></div>
+        <div className="container text-center">
+          <h2 className="h1" style={{ marginBottom: '1.5rem' }}>Transform your operations.</h2>
+          <p className="text-body" style={{ fontSize: '1.25rem', marginBottom: '2.5rem' }}>Join the waitlist today to get early access to Estata 2.0.</p>
+          <div style={{ maxWidth: '400px', margin: '0 auto' }}>
             <WaitlistForm />
           </div>
         </div>
-        
-        <BottomCTA />
-      </div>
+      </section>
+
     </div>
   );
 };
