@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Hexagon, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,9 +9,8 @@ const Footer = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', marginBottom: '4rem' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', gridColumn: 'span 1' }}>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '1.5rem' }}>
-              <Hexagon fill="var(--primary)" color="var(--primary)" size={32} />
-              <span style={{ color: 'var(--text-dark)'}}>Esta<span style={{ color: 'var(--primary)' }}>ta</span></span>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <img src="/logo.png" alt="Estata Logo" style={{ height: '48px', borderRadius: '4px' }} />
             </Link>
             <p style={{ color: 'var(--text-body)', maxWidth: '300px' }}>
               Property decisions, powered by data. Automated valuation and real estate investment intelligence.

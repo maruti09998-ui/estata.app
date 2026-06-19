@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Hexagon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +18,8 @@ const Navbar = () => {
 
   return (
     <nav className="glass nav-pill">
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '1.25rem' }}>
-        <Hexagon fill="var(--primary)" color="var(--primary)" size={28} />
-        <span style={{ color: 'var(--text-dark)'}}>Esta<span style={{ color: 'var(--primary)' }}>ta</span></span>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <img src="/logo.png" alt="Estata Logo" style={{ height: '40px' }} />
       </Link>
 
       <ul className="nav-links" id="desktop-nav">
